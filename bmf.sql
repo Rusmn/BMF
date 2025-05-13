@@ -9,6 +9,13 @@ CREATE TABLE Lokasi (
     kapasitas INT NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE Fasilitas_Lokasi (
+    id_lokasi INT,
+    fasilitas VARCHAR(255),
+    PRIMARY KEY (id_lokasi, fasilitas(100)),
+    FOREIGN KEY (id_lokasi) REFERENCES Lokasi(id_lokasi) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 CREATE TABLE Pertunjukan (
     id_pertunjukan INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,
@@ -19,15 +26,19 @@ CREATE TABLE Pertunjukan (
 
 CREATE TABLE Sponsor (
     id_sponsor INT AUTO_INCREMENT PRIMARY KEY,
+    id_pertunjukan INT NOT NULL,
     jenis_sponsorship VARCHAR(100) NOT NULL,
     nama_perusahaan VARCHAR(255) NOT NULL,
-    kontribusi DECIMAL(15,2) NOT NULL
+    kontribusi DECIMAL(15,2) NOT NULL,
+    FOREIGN KEY (id_pertunjukan) REFERENCES Pertunjukan(id_pertunjukan)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Vendor (
     id_vendor INT AUTO_INCREMENT PRIMARY KEY,
+    id_pertunjukan INT NOT NULL,
     nama VARCHAR(255) NOT NULL,
-    jenis_layanan VARCHAR(100) NOT NULL
+    jenis_layanan VARCHAR(100) NOT NULL,
+    FOREIGN KEY (id_pertunjukan) REFERENCES Pertunjukan(id_pertunjukan)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Artis (
@@ -35,6 +46,28 @@ CREATE TABLE Artis (
     nama VARCHAR(255) NOT NULL,
     negara_asal VARCHAR(100) NOT NULL,
     biografi TEXT
+) ENGINE=InnoDB;
+
+CREATE TABLE Genre_Artis (
+    id_artis INT,
+    genre VARCHAR(100),
+    PRIMARY KEY (id_artis, genre),
+    FOREIGN KEY (id_artis) REFERENCES Artis(id_artis) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Kontak_Artis (
+    id_artis INT,
+    kontak VARCHAR(255),
+    PRIMARY KEY (id_artis, kontak),
+    FOREIGN KEY (id_artis) REFERENCES Artis(id_artis) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Tampil (
+    id_artis INT,
+    id_pertunjukan INT,
+    PRIMARY KEY (id_artis, id_pertunjukan),
+    FOREIGN KEY (id_artis) REFERENCES Artis(id_artis),
+    FOREIGN KEY (id_pertunjukan) REFERENCES Pertunjukan(id_pertunjukan)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Penonton (
@@ -64,27 +97,6 @@ CREATE TABLE Merchandise (
     kode_barang INT AUTO_INCREMENT PRIMARY KEY,
     kategori VARCHAR(100) NOT NULL,
     harga DECIMAL(10,2) NOT NULL
-) ENGINE=InnoDB;
-
-CREATE TABLE Genre_Artis (
-    id_artis INT,
-    genre VARCHAR(100),
-    PRIMARY KEY (id_artis, genre),
-    FOREIGN KEY (id_artis) REFERENCES Artis(id_artis) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE Kontrak_Artis (
-    id_artis INT,
-    kontrak VARCHAR(255),
-    PRIMARY KEY (id_artis, kontrak),
-    FOREIGN KEY (id_artis) REFERENCES Artis(id_artis) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE Fasilitas_Lokasi (
-    id_lokasi INT,
-    fasilitas VARCHAR(255),
-    PRIMARY KEY (id_lokasi, fasilitas(100)),
-    FOREIGN KEY (id_lokasi) REFERENCES Lokasi(id_lokasi) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE Nomor_Telepon_Penonton (
@@ -124,22 +136,6 @@ CREATE TABLE Mendukung (
     id_pertunjukan INT,
     PRIMARY KEY (id_sponsor, id_pertunjukan),
     FOREIGN KEY (id_sponsor) REFERENCES Sponsor(id_sponsor),
-    FOREIGN KEY (id_pertunjukan) REFERENCES Pertunjukan(id_pertunjukan)
-) ENGINE=InnoDB;
-
-CREATE TABLE Menyediakan (
-    id_vendor INT,
-    id_pertunjukan INT,
-    PRIMARY KEY (id_vendor, id_pertunjukan),
-    FOREIGN KEY (id_vendor) REFERENCES Vendor(id_vendor),
-    FOREIGN KEY (id_pertunjukan) REFERENCES Pertunjukan(id_pertunjukan)
-) ENGINE=InnoDB;
-
-CREATE TABLE Tampil (
-    id_artis INT,
-    id_pertunjukan INT,
-    PRIMARY KEY (id_artis, id_pertunjukan),
-    FOREIGN KEY (id_artis) REFERENCES Artis(id_artis),
     FOREIGN KEY (id_pertunjukan) REFERENCES Pertunjukan(id_pertunjukan)
 ) ENGINE=InnoDB;
 
