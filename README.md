@@ -1,28 +1,25 @@
 ## Tables
 | Nama Table | Check |
 |---------------------| ---- |
-| Lokasi | v |
-| Fasilitas_Lokasi | x | 
-| Pertunjukan | v |
-| Sponsor | v |
-| Mendukung | x |
-| Vendor | v |
-| Artis | v |
-| Genre_Artis | v |
-| Kontak_Artis | v |
-| Tampil | v |
-| Penonton | x |
-| Panitia_Pelaksana | x |
-| Diurus_Oleh | x |
-| Tiket | x |
-| Tiket_Reguler | x | 
-| Tiket_VIP | x | 
-| Mendapatkan | x | 
-| Merchandise | x | 
-| Nomor_Telepon_Penonton | x | 
-| Alamat_Penonton | x | 
-| Transaksi_Pembelian | x | 
-| Terdaftar_Transaksi | x | 
+| lokasi | v |
+| fasilitas_lokasi | x | 
+| pertunjukan | v |
+| sponsor | v |
+| vendor | v |
+| artis | v |
+| genre_artis | v |
+| kontak_artis | v |
+| tampil | v |
+| penonton | x |
+| panitia_pelaksana | x |
+| tiket | x |
+| tiket_reguler | x | 
+| tiket_vip | x | 
+| merchandise | v | 
+| nomor_telepon_penonton | v | 
+| alamat_penonton | v | 
+| transaksi_pembelian | v | 
+| terdaftar_transaksi | v | 
 
 ## Inisialisasi
 ### Linux
