@@ -182,10 +182,6 @@ INSERT INTO Sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontrib
 (50, 'Utama', 'Suara Anak Bangsa', 128000000.00);
 
 -- =============================================
--- Mendukung
--- =============================================
-
--- =============================================
 -- Vendor
 -- =============================================
 INSERT INTO Vendor (id_pertunjukan, nama, jenis_layanan) VALUES 
@@ -530,30 +526,191 @@ INSERT INTO Tampil (id_artis, id_pertunjukan) VALUES
 -- =============================================
 -- Penonton
 -- =============================================
+INSERT INTO penonton (nama, email) VALUES
+('Erlangga Wiryawan', 'erlangga.wiryawan@email.com'),
+('Fatimah Syandira', 'fatimah.syandira@email.com'),
+('Gibran Arasy', 'gibran.arasy@email.com'),
+('Hana Meilani', 'hana.meilani@email.com'),
+('Irawan Tedjokusumo', 'irawan.tedjokusumo@email.com'),
+('Janitra Ayudhia', 'janitra.ayudhia@email.com'),
+('Kemal Satrio', 'kemal.satrio@email.com'),
+('Laras Mahadita', 'laras.mahadita@email.com'),
+('Mega Oktaviani', 'mega.oktaviani@email.com'),
+('Naufal Rizqiano', 'naufal.rizqiano@email.com'),
+('Orlan Wirawan', 'orlan.wirawan@email.com'),
+('Putri Maharani', 'putri.maharani@email.com'),
+('Qaysan Ardhiansyah', 'qaysan.ardhiansyah@email.com'),
+('Ratri Sekaring', 'ratri.sekaring@email.com'),
+('Seno Nugraha', 'seno.nugraha@email.com'),
+('Tasya Nayara', 'tasya.nayara@email.com'),
+('Utari Candrawati', 'utari.candrawati@email.com'),
+('Vian Adyatama', 'vian.adyatama@email.com'),
+('Wira Handoko', 'wira.handoko@email.com'),
+('Zidan Prakoso', 'zidan.prakoso@email.com');
 
 -- =============================================
 -- Panitia_Pelaksana
 -- =============================================
 
--- =============================================
--- Diurus_Oleh
--- =============================================
+INSERT INTO panitia_pelaksana (nama, kontribusi, kontak, id_pertunjukan) VALUES
+('Rani Saraswati', 'Koordinator Venue', '081234567801', 1),
+('Damar Wicaksana', 'Keamanan', '081234567802', 1),
+('Mega Cahyani', 'Transportasi', '081234567803', 2),
+('Gilang Mahardika', 'Keamanan', '081234567804', 2),
+('Yusuf Prakoso', 'Dokumentasi', '081234567805', 3),
+('Adinda Permatasari', 'Publikasi', '081234567806', 3),
+('Rizky Ananda', 'Konsumsi', '081234567807', 4),
+('Sarah Dwiyani', 'Akomodasi Artis', '081234567808', 4),
+('Kirana Fitriani', 'Registrasi', '081234567809', 5),
+('Bima Utomo', 'Teknisi Panggung', '081234567810', 5),
+('Jasmine Oktavira', 'Registrasi', '081234567811', 6),
+('Raka Subekti', 'Dokumentasi', '081234567812', 6),
+('Zahra Nurjanah', 'Sound System', '081234567813', 7),
+('Fadli Ramadhan', 'Konsumsi', '081234567814', 7),
+('Nadya Lestari', 'Keamanan', '081234567815', 8),
+('Rehan Nugraha', 'Publikasi', '081234567816', 8),
+('Wulan Sari', 'Dokumentasi', '081234567817', 9),
+('Dhani Saputra', 'Akomodasi Artis', '081234567818', 9),
+('Indira Maheswari', 'Keamanan', '081234567819', 10),
+('Rio Perdana', 'Transportasi', '081234567820', 10),
+('Alifa Yuliani', 'Perlengkapan', '081234567821', 11),
+('Fikri Nasution', 'Dokumentasi', '081234567822', 11),
+('Raisa Oktaviani', 'Konsumsi', '081234567823', 12),
+('Irfan Kurniawan', 'Keamanan', '081234567824', 12),
+('Putri Maulida', 'Registrasi', '081234567825', 13),
+('Raka Ardiansyah', 'Keamanan', '081234567826', 13),
+('Yuni Wahyuni', 'Dokumentasi', '081234567827', 14),
+('Rizal Fahrezi', 'Perlengkapan', '081234567828', 14),
+('Syifa Halimah', 'Publikasi', '081234567829', 15),
+('Angga Setiawan', 'Konsumsi', '081234567830', 15),
+('Laras Prameswari', 'Registrasi', '081234567831', 15),
+('Tio Nugroho', 'Keamanan', '081234567832', 16),
+('Bella Anjani', 'Sound System', '081234567833', 16),
+('Hilman Yusuf', 'Dokumentasi', '081234567834', 17),
+('Citra Lestari', 'Publikasi', '081234567835', 17),
+('Yudha Wirawan', 'Transportasi', '081234567836', 18),
+('Gina Ayuning', 'Perlengkapan', '081234567837', 18),
+('Andre Salim', 'Dokumentasi', '081234567838', 19),
+('Selvia Hartanti', 'Keamanan', '081234567839', 19),
+('Zaki Ramadhan', 'Konsumsi', '081234567840', 20),
+('Maya Ridwan', 'Perlengkapan', '081234567841', 20),
+('Fajar Hidayat', 'Registrasi', '081234567842', 20);
 
 -- =============================================
 -- Tiket
 -- =============================================
+INSERT INTO tiket (kategori, harga, status_pembayaran, id_pertunjukan, id_penonton) VALUES
+('reguler', 137516.00, 'lunas', 6, 1),
+('VIP', 81527.00, 'lunas', 17, 2),
+('VIP', 110986.00, 'lunas', 13, 3),
+('VIP', 168793.00, 'belum lunas', 14, 4),
+('VIP', 158349.00, 'belum lunas', 2, 5),
+('reguler', 177719.00, 'lunas', 13, 6),
+('VIP', 140573.00, 'lunas', 4, 7),
+('VIP', 134492.00, 'lunas', 6, 8),
+('VIP', 100504.00, 'lunas', 1, 9),
+('VIP', 83433.00, 'belum lunas', 4, 10),
+('VIP', 114267.00, 'belum lunas', 8, 11),
+('reguler', 98238.00, 'belum lunas', 3, 12),
+('reguler', 127022.00, 'belum lunas', 20, 13),
+('reguler', 130892.00, 'belum lunas', 20, 14),
+('VIP', 104383.00, 'belum lunas', 14, 15),
+('VIP', 106272.00, 'lunas', 12, 16),
+('VIP', 129029.00, 'belum lunas', 5, 17),
+('VIP', 143431.00, 'belum lunas', 4, 18),
+('VIP', 118702.00, 'belum lunas', 18, 19),
+('VIP', 117061.00, 'lunas', 5, 20),
+('VIP', 132625.00, 'belum lunas', 4, 1),
+('VIP', 131271.00, 'lunas', 8, 2),
+('reguler', 102727.00, 'lunas', 14, 3),
+('VIP', 76012.00, 'belum lunas', 13, 4),
+('VIP', 134227.00, 'belum lunas', 20, 5),
+('reguler', 132637.00, 'lunas', 19, 6),
+('VIP', 129309.00, 'lunas', 9, 7),
+('reguler', 126124.00, 'belum lunas', 2, 8),
+('VIP', 114735.00, 'belum lunas', 8, 9),
+('reguler', 149123.00, 'lunas', 12, 10),
+('VIP', 144954.00, 'belum lunas', 17, 11),
+('VIP', 110547.00, 'belum lunas', 17, 12),
+('VIP', 145326.00, 'lunas', 2, 13),
+('VIP', 85891.00, 'belum lunas', 12, 14),
+('reguler', 114162.00, 'lunas', 4, 15),
+('VIP', 129410.00, 'belum lunas', 5, 16),
+('VIP', 109968.00, 'lunas', 3, 17),
+('VIP', 113956.00, 'belum lunas', 19, 18),
+('VIP', 113420.00, 'belum lunas', 20, 19),
+('VIP', 139827.00, 'belum lunas', 13, 20),
+('VIP', 80494.00, 'belum lunas', 8, 1),
+('VIP', 123120.00, 'lunas', 11, 2),
+('VIP', 140010.00, 'belum lunas', 12, 3),
+('VIP', 122746.00, 'belum lunas', 15, 4),
+('VIP', 174408.00, 'lunas', 19, 5),
+('VIP', 105782.00, 'belum lunas', 15, 6),
+('VIP', 105589.00, 'lunas', 11, 7),
+('VIP', 125105.00, 'belum lunas', 19, 8),
+('VIP', 120838.00, 'belum lunas', 11, 9),
+('VIP', 135127.00, 'belum lunas', 7, 10);
 
 -- =============================================
 -- Tiker_Reguler
 -- =============================================
+INSERT INTO tiket_reguler (id_tiket) VALUES
+(1),
+(6),
+(12),
+(13),
+(14),
+(23),
+(26),
+(28),
+(30),
+(35);
 
 -- =============================================
 -- Tiker_VIP
 -- =============================================
 
--- =============================================
--- Mendapatkan
--- =============================================
+INSERT INTO tiket_vip (id_tiket, kode_barang) VALUES
+(2, 3),
+(3, 19),
+(4, 9),
+(5, 13),
+(7, 2),
+(8, 7),
+(9, 17),
+(10, 4),
+(11, 8),
+(15, 5),
+(16, 1),
+(17, 19),
+(18, 14),
+(19, 5),
+(20, 10),
+(21, 12),
+(22, 11),
+(24, 2),
+(25, 11),
+(27, 4),
+(29, 9),
+(31, 7),
+(32, 19),
+(33, 14),
+(34, 5),
+(36, 20),
+(37, 18),
+(38, 13),
+(39, 7),
+(40, 1),
+(41, 20),
+(42, 10),
+(43, 5),
+(44, 12),
+(45, 16),
+(46, 6),
+(47, 15),
+(48, 1),
+(49, 4),
+(50, 3);
 
 -- =============================================
 -- Merchandise
