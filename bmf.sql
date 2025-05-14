@@ -117,10 +117,9 @@ CREATE TABLE alamat (
 ) ENGINE=InnoDB;
 
 CREATE TABLE transaksi_pembelian (
+    nomor_transaksi INT AUTO_INCREMENT PRIMARY KEY,
     id_penonton INT,
-    nomor_transaksi INT,
     waktu_pembelian DATETIME NOT NULL,
-    PRIMARY KEY (id_penonton, nomor_transaksi),
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -132,8 +131,8 @@ CREATE TABLE tiket_reguler (
 CREATE TABLE tiket_VIP (
     id_tiket INT,
     kode_barang INT,
-    FOREIGN KEY (id_tiket) REFERENCES tiket(id_tiket) ON DELETE CASCADE
     PRIMARY KEY (id_tiket, kode_barang),
+    FOREIGN KEY (id_tiket) REFERENCES tiket(id_tiket) ON DELETE CASCADE,
     FOREIGN KEY (kode_barang) REFERENCES merchandise(kode_barang)
 ) ENGINE=InnoDB;
 
