@@ -102,7 +102,7 @@ CREATE TABLE merchandise (
     harga DECIMAL(10,2) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE nomor_telepon (
+CREATE TABLE nomor_telepon_penonton (
     id_penonton INT,
     nomor_telepon VARCHAR(20),
     PRIMARY KEY (id_penonton, nomor_telepon),
@@ -120,6 +120,7 @@ CREATE TABLE transaksi_pembelian (
     nomor_transaksi INT AUTO_INCREMENT PRIMARY KEY,
     id_penonton INT,
     waktu_pembelian DATETIME NOT NULL,
+    total_harga DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -128,7 +129,7 @@ CREATE TABLE tiket_reguler (
     FOREIGN KEY (id_tiket) REFERENCES tiket(id_tiket) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE tiket_VIP (
+CREATE TABLE tiket_vip (
     id_tiket INT,
     kode_barang INT,
     PRIMARY KEY (id_tiket, kode_barang),
