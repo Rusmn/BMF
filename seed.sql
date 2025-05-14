@@ -63,7 +63,7 @@ INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (50, 'Gedung Merdeka Band
 -- =============================================
 -- Pertunjukan
 -- =============================================
-INSERT INTO Pertunjukan (nama, waktu, id_lokasi) VALUES 
+INSERT INTO pertunjukan (nama, waktu, id_lokasi) VALUES 
 ('Soundnesia Vibes', '2025-03-12 19:00:00', 1),
 ('Nusantara Beats Fest', '2025-04-20 17:30:00', 2),
 ('Dangdut On The Roof', '2025-05-05 20:00:00', 3),
@@ -184,7 +184,7 @@ INSERT INTO Sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontrib
 -- =============================================
 -- Vendor
 -- =============================================
-INSERT INTO Vendor (id_pertunjukan, nama, jenis_layanan) VALUES 
+INSERT INTO vendor (id_pertunjukan, nama, jenis_layanan) VALUES 
 (1, 'SonicBoom Audio', 'Sound System'),
 (1, 'TwinkleLights', 'Lighting'),
 (1, 'RasaRia Bites', 'Catering'),
@@ -345,7 +345,7 @@ INSERT INTO Vendor (id_pertunjukan, nama, jenis_layanan) VALUES
 -- =============================================
 -- Artis
 -- =============================================
-INSERT INTO Artis (id_artis, nama, negara_asal, biografi) VALUES
+INSERT INTO artis (id_artis, nama, negara_asal, biografi) VALUES
 (1, 'Lunar Echo', 'Indonesia', 'Grup elektronik-pop asal Jakarta yang dikenal dengan beat dreamy dan lirik puitis.'),
 (2, 'NeonDrift', 'Amerika Serikat', 'DJ dan produser musik EDM dari LA dengan gaya futuristik.'),
 (3, 'Soulstice', 'Inggris', 'Band indie soul dengan nuansa lo-fi dan vokal mellow.'),
@@ -370,7 +370,7 @@ INSERT INTO Artis (id_artis, nama, negara_asal, biografi) VALUES
 -- =============================================
 -- Genre_Artis
 -- =============================================
-INSERT INTO Genre_Artis (id_artis, genre) VALUES
+INSERT INTO genre_artis (id_artis, genre) VALUES
 (1, 'Electronic Pop'),
 (1, 'Dream Pop'),
 
@@ -434,7 +434,7 @@ INSERT INTO Genre_Artis (id_artis, genre) VALUES
 -- =============================================
 -- Kontak_Artis
 -- =============================================
-INSERT INTO Kontak_Artis (id_artis, kontak) VALUES
+INSERT INTO kontak_artis (id_artis, kontak) VALUES
 (1, 'lunarecho@artistmail.com'),
 (1, '@lunarecho_official'),
 
@@ -498,7 +498,7 @@ INSERT INTO Kontak_Artis (id_artis, kontak) VALUES
 -- =============================================
 -- Tampil
 -- =============================================
-INSERT INTO Tampil (id_artis, id_pertunjukan) VALUES
+INSERT INTO tampil (id_artis, id_pertunjukan) VALUES
 -- Pertunjukan 1–10
 (1, 1), (2, 1), (3, 1), (4, 1), (5, 1),
 (1, 2), (6, 2), (7, 2), (8, 2), (9, 2),
