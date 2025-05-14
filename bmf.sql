@@ -2,7 +2,7 @@
 -- CREATE DATABASE IF NOT EXISTS BMF;
 -- USE BMF;
 
--- Buat tabel utama
+-- Tabel utama
 CREATE TABLE lokasi (
     id_lokasi INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,

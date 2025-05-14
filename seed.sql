@@ -63,7 +63,7 @@ INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (50, 'Gedung Merdeka Band
 -- =============================================
 -- Pertunjukan
 -- =============================================
-INSERT INTO Pertunjukan (nama, waktu, id_lokasi) VALUES 
+INSERT INTO pertunjukan (nama, waktu, id_lokasi) VALUES 
 ('Soundnesia Vibes', '2025-03-12 19:00:00', 1),
 ('Nusantara Beats Fest', '2025-04-20 17:30:00', 2),
 ('Dangdut On The Roof', '2025-05-05 20:00:00', 3),
@@ -182,13 +182,9 @@ INSERT INTO Sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontrib
 (50, 'Utama', 'Suara Anak Bangsa', 128000000.00);
 
 -- =============================================
--- Mendukung
--- =============================================
-
--- =============================================
 -- Vendor
 -- =============================================
-INSERT INTO Vendor (id_pertunjukan, nama, jenis_layanan) VALUES 
+INSERT INTO vendor (id_pertunjukan, nama, jenis_layanan) VALUES 
 (1, 'SonicBoom Audio', 'Sound System'),
 (1, 'TwinkleLights', 'Lighting'),
 (1, 'RasaRia Bites', 'Catering'),
@@ -349,7 +345,7 @@ INSERT INTO Vendor (id_pertunjukan, nama, jenis_layanan) VALUES
 -- =============================================
 -- Artis
 -- =============================================
-INSERT INTO Artis (id_artis, nama, negara_asal, biografi) VALUES
+INSERT INTO artis (id_artis, nama, negara_asal, biografi) VALUES
 (1, 'Lunar Echo', 'Indonesia', 'Grup elektronik-pop asal Jakarta yang dikenal dengan beat dreamy dan lirik puitis.'),
 (2, 'NeonDrift', 'Amerika Serikat', 'DJ dan produser musik EDM dari LA dengan gaya futuristik.'),
 (3, 'Soulstice', 'Inggris', 'Band indie soul dengan nuansa lo-fi dan vokal mellow.'),
@@ -374,7 +370,7 @@ INSERT INTO Artis (id_artis, nama, negara_asal, biografi) VALUES
 -- =============================================
 -- Genre_Artis
 -- =============================================
-INSERT INTO Genre_Artis (id_artis, genre) VALUES
+INSERT INTO genre_artis (id_artis, genre) VALUES
 (1, 'Electronic Pop'),
 (1, 'Dream Pop'),
 
@@ -438,7 +434,7 @@ INSERT INTO Genre_Artis (id_artis, genre) VALUES
 -- =============================================
 -- Kontak_Artis
 -- =============================================
-INSERT INTO Kontak_Artis (id_artis, kontak) VALUES
+INSERT INTO kontak_artis (id_artis, kontak) VALUES
 (1, 'lunarecho@artistmail.com'),
 (1, '@lunarecho_official'),
 
@@ -502,7 +498,7 @@ INSERT INTO Kontak_Artis (id_artis, kontak) VALUES
 -- =============================================
 -- Tampil
 -- =============================================
-INSERT INTO Tampil (id_artis, id_pertunjukan) VALUES
+INSERT INTO tampil (id_artis, id_pertunjukan) VALUES
 -- Pertunjukan 1–10
 (1, 1), (2, 1), (3, 1), (4, 1), (5, 1),
 (1, 2), (6, 2), (7, 2), (8, 2), (9, 2),
@@ -530,50 +526,487 @@ INSERT INTO Tampil (id_artis, id_pertunjukan) VALUES
 -- =============================================
 -- Penonton
 -- =============================================
+INSERT INTO penonton (nama, email) VALUES
+('Erlangga Wiryawan', 'erlangga.wiryawan@email.com'),
+('Fatimah Syandira', 'fatimah.syandira@email.com'),
+('Gibran Arasy', 'gibran.arasy@email.com'),
+('Hana Meilani', 'hana.meilani@email.com'),
+('Irawan Tedjokusumo', 'irawan.tedjokusumo@email.com'),
+('Janitra Ayudhia', 'janitra.ayudhia@email.com'),
+('Kemal Satrio', 'kemal.satrio@email.com'),
+('Laras Mahadita', 'laras.mahadita@email.com'),
+('Mega Oktaviani', 'mega.oktaviani@email.com'),
+('Naufal Rizqiano', 'naufal.rizqiano@email.com'),
+('Orlan Wirawan', 'orlan.wirawan@email.com'),
+('Putri Maharani', 'putri.maharani@email.com'),
+('Qaysan Ardhiansyah', 'qaysan.ardhiansyah@email.com'),
+('Ratri Sekaring', 'ratri.sekaring@email.com'),
+('Seno Nugraha', 'seno.nugraha@email.com'),
+('Tasya Nayara', 'tasya.nayara@email.com'),
+('Utari Candrawati', 'utari.candrawati@email.com'),
+('Vian Adyatama', 'vian.adyatama@email.com'),
+('Wira Handoko', 'wira.handoko@email.com'),
+('Zidan Prakoso', 'zidan.prakoso@email.com');
 
 -- =============================================
 -- Panitia_Pelaksana
 -- =============================================
 
--- =============================================
--- Diurus_Oleh
--- =============================================
+INSERT INTO panitia_pelaksana (nama, kontribusi, kontak, id_pertunjukan) VALUES
+('Rani Saraswati', 'Koordinator Venue', '081234567801', 1),
+('Damar Wicaksana', 'Keamanan', '081234567802', 1),
+('Mega Cahyani', 'Transportasi', '081234567803', 2),
+('Gilang Mahardika', 'Keamanan', '081234567804', 2),
+('Yusuf Prakoso', 'Dokumentasi', '081234567805', 3),
+('Adinda Permatasari', 'Publikasi', '081234567806', 3),
+('Rizky Ananda', 'Konsumsi', '081234567807', 4),
+('Sarah Dwiyani', 'Akomodasi Artis', '081234567808', 4),
+('Kirana Fitriani', 'Registrasi', '081234567809', 5),
+('Bima Utomo', 'Teknisi Panggung', '081234567810', 5),
+('Jasmine Oktavira', 'Registrasi', '081234567811', 6),
+('Raka Subekti', 'Dokumentasi', '081234567812', 6),
+('Zahra Nurjanah', 'Sound System', '081234567813', 7),
+('Fadli Ramadhan', 'Konsumsi', '081234567814', 7),
+('Nadya Lestari', 'Keamanan', '081234567815', 8),
+('Rehan Nugraha', 'Publikasi', '081234567816', 8),
+('Wulan Sari', 'Dokumentasi', '081234567817', 9),
+('Dhani Saputra', 'Akomodasi Artis', '081234567818', 9),
+('Indira Maheswari', 'Keamanan', '081234567819', 10),
+('Rio Perdana', 'Transportasi', '081234567820', 10),
+('Alifa Yuliani', 'Perlengkapan', '081234567821', 11),
+('Fikri Nasution', 'Dokumentasi', '081234567822', 11),
+('Raisa Oktaviani', 'Konsumsi', '081234567823', 12),
+('Irfan Kurniawan', 'Keamanan', '081234567824', 12),
+('Putri Maulida', 'Registrasi', '081234567825', 13),
+('Raka Ardiansyah', 'Keamanan', '081234567826', 13),
+('Yuni Wahyuni', 'Dokumentasi', '081234567827', 14),
+('Rizal Fahrezi', 'Perlengkapan', '081234567828', 14),
+('Syifa Halimah', 'Publikasi', '081234567829', 15),
+('Angga Setiawan', 'Konsumsi', '081234567830', 15),
+('Laras Prameswari', 'Registrasi', '081234567831', 15),
+('Tio Nugroho', 'Keamanan', '081234567832', 16),
+('Bella Anjani', 'Sound System', '081234567833', 16),
+('Hilman Yusuf', 'Dokumentasi', '081234567834', 17),
+('Citra Lestari', 'Publikasi', '081234567835', 17),
+('Yudha Wirawan', 'Transportasi', '081234567836', 18),
+('Gina Ayuning', 'Perlengkapan', '081234567837', 18),
+('Andre Salim', 'Dokumentasi', '081234567838', 19),
+('Selvia Hartanti', 'Keamanan', '081234567839', 19),
+('Zaki Ramadhan', 'Konsumsi', '081234567840', 20),
+('Maya Ridwan', 'Perlengkapan', '081234567841', 20),
+('Fajar Hidayat', 'Registrasi', '081234567842', 20);
 
 -- =============================================
 -- Tiket
 -- =============================================
+INSERT INTO tiket (kategori, harga, status_pembayaran, id_pertunjukan, id_penonton) VALUES
+('reguler', 137516.00, 'lunas', 6, 1),
+('VIP', 81527.00, 'lunas', 17, 2),
+('VIP', 110986.00, 'lunas', 13, 3),
+('VIP', 168793.00, 'belum lunas', 14, 4),
+('VIP', 158349.00, 'belum lunas', 2, 5),
+('reguler', 177719.00, 'lunas', 13, 6),
+('VIP', 140573.00, 'lunas', 4, 7),
+('VIP', 134492.00, 'lunas', 6, 8),
+('VIP', 100504.00, 'lunas', 1, 9),
+('VIP', 83433.00, 'belum lunas', 4, 10),
+('VIP', 114267.00, 'belum lunas', 8, 11),
+('reguler', 98238.00, 'belum lunas', 3, 12),
+('reguler', 127022.00, 'belum lunas', 20, 13),
+('reguler', 130892.00, 'belum lunas', 20, 14),
+('VIP', 104383.00, 'belum lunas', 14, 15),
+('VIP', 106272.00, 'lunas', 12, 16),
+('VIP', 129029.00, 'belum lunas', 5, 17),
+('VIP', 143431.00, 'belum lunas', 4, 18),
+('VIP', 118702.00, 'belum lunas', 18, 19),
+('VIP', 117061.00, 'lunas', 5, 20),
+('VIP', 132625.00, 'belum lunas', 4, 1),
+('VIP', 131271.00, 'lunas', 8, 2),
+('reguler', 102727.00, 'lunas', 14, 3),
+('VIP', 76012.00, 'belum lunas', 13, 4),
+('VIP', 134227.00, 'belum lunas', 20, 5),
+('reguler', 132637.00, 'lunas', 19, 6),
+('VIP', 129309.00, 'lunas', 9, 7),
+('reguler', 126124.00, 'belum lunas', 2, 8),
+('VIP', 114735.00, 'belum lunas', 8, 9),
+('reguler', 149123.00, 'lunas', 12, 10),
+('VIP', 144954.00, 'belum lunas', 17, 11),
+('VIP', 110547.00, 'belum lunas', 17, 12),
+('VIP', 145326.00, 'lunas', 2, 13),
+('VIP', 85891.00, 'belum lunas', 12, 14),
+('reguler', 114162.00, 'lunas', 4, 15),
+('VIP', 129410.00, 'belum lunas', 5, 16),
+('VIP', 109968.00, 'lunas', 3, 17),
+('VIP', 113956.00, 'belum lunas', 19, 18),
+('VIP', 113420.00, 'belum lunas', 20, 19),
+('VIP', 139827.00, 'belum lunas', 13, 20),
+('VIP', 80494.00, 'belum lunas', 8, 1),
+('VIP', 123120.00, 'lunas', 11, 2),
+('VIP', 140010.00, 'belum lunas', 12, 3),
+('VIP', 122746.00, 'belum lunas', 15, 4),
+('VIP', 174408.00, 'lunas', 19, 5),
+('VIP', 105782.00, 'belum lunas', 15, 6),
+('VIP', 105589.00, 'lunas', 11, 7),
+('VIP', 125105.00, 'belum lunas', 19, 8),
+('VIP', 120838.00, 'belum lunas', 11, 9),
+('VIP', 135127.00, 'belum lunas', 7, 10);
 
 -- =============================================
 -- Tiker_Reguler
 -- =============================================
+INSERT INTO tiket_reguler (id_tiket) VALUES
+(1),
+(6),
+(12),
+(13),
+(14),
+(23),
+(26),
+(28),
+(30),
+(35);
 
 -- =============================================
 -- Tiker_VIP
 -- =============================================
 
--- =============================================
--- Mendapatkan
--- =============================================
+INSERT INTO tiket_vip (id_tiket, kode_barang) VALUES
+(2, 3),
+(3, 19),
+(4, 9),
+(5, 13),
+(7, 2),
+(8, 7),
+(9, 17),
+(10, 4),
+(11, 8),
+(15, 5),
+(16, 1),
+(17, 19),
+(18, 14),
+(19, 5),
+(20, 10),
+(21, 12),
+(22, 11),
+(24, 2),
+(25, 11),
+(27, 4),
+(29, 9),
+(31, 7),
+(32, 19),
+(33, 14),
+(34, 5),
+(36, 20),
+(37, 18),
+(38, 13),
+(39, 7),
+(40, 1),
+(41, 20),
+(42, 10),
+(43, 5),
+(44, 12),
+(45, 16),
+(46, 6),
+(47, 15),
+(48, 1),
+(49, 4),
+(50, 3);
 
 -- =============================================
 -- Merchandise
 -- =============================================
+INSERT INTO merchandise (kategori, harga) VALUES
+('Concert T-Shirt', 200000.00),
+('Official Poster', 50000.00),
+('Lightstick', 350000.00),
+('Physical Album', 150000.00),
+('Band Cap', 120000.00),
+('Tote Bag', 100000.00),
+('Keychain', 30000.00),
+('Lanyard Exclusive', 25000.00),
+('Sticker Pack', 20000.00),
+('Hoodie Limited Edition', 275000.00),
+('Photocard Set', 60000.00),
+('Band-Themed Notebook', 45000.00),
+('CD Boxset', 250000.00),
+('Glow Wristband', 40000.00),
+('Mini Banner', 35000.00),
+('Band Face Mask', 25000.00),
+('Folding Fan', 30000.00),
+('Necklace - Band Logo', 85000.00),
+('Rubber Wristband', 20000.00),
+('Enamel Pin Set', 30000.00);
 
 -- =============================================
 -- Nomor_Telepon_Penonton
 -- =============================================
+INSERT INTO nomor_telepon_penonton (id_penonton, nomor_telepon) VALUES
+(1, '081234567890'),
+(1, '082112345678'),
+(1, '089998877665'),
+(2, '089876543210'),
+(2, '087712341234'),
+(2, '081212344321'),
+(3, '081223344556'),
+(3, '082165432187'),
+(4, '082298765432'),
+(4, '085698741236'),
+(5, '085612341234'),
+(5, '081298765432'),
+(5, '082176543210'),
+(6, '089912345678'),
+(6, '081223456789'),
+(7, '081234123412'),
+(7, '082199998877'),
+(8, '085723412341'),
+(8, '089912387654'),
+(9, '082198761234'),
+(9, '087823456789'),
+(9, '081276543210'),
+(10, '083812345678'),
+(10, '083812312312'),
+(11, '081287654321'),
+(11, '085612398765'),
+(12, '081234567891'),
+(12, '081276543234'),
+(13, '082122334455'),
+(13, '089912341234'),
+(13, '081298761234'),
+(14, '085698765432'),
+(14, '087812376543'),
+(15, '087712398765'),
+(15, '083812398765'),
+(16, '081223345566'),
+(16, '082199887766'),
+(16, '081234876543'),
+(17, '089976543210'),
+(17, '081298745612'),
+(17, '089987654321'),
+(18, '087812341234'),
+(18, '082187654321'),
+(18, '083898765432'),
+(19, '085623412345'),
+(19, '089912398765'),
+(19, '087756789012'),
+(20, '081212345678'),
+(20, '082112398765'),
+(20, '083812345123');
 
 -- =============================================
 -- Alamat_Penonton
 -- =============================================
+INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
+(1, 'Jl. Melati No. 12, Bandung'),
+(1, 'Jl. Cempaka 45, Jakarta Selatan'),
+(1, 'Jl. Sabang No. 14, Jakarta Pusat'),
+(2, 'Jl. Merdeka No. 5, Surabaya'),
+(2, 'Jl. Anggrek Raya No. 17, Bandung'),
+(2, 'Jl. Mangga Dua No. 18, Jakarta Utara'),
+(3, 'Jl. Sudirman No. 101, Yogyakarta'),
+(3, 'Jl. Mawar No. 33, Tangerang'),
+(3, 'Jl. Sultan Agung No. 29, Bekasi'),
+(4, 'Jl. Kenanga No. 23, Jakarta Utara'),
+(4, 'Jl. Dr. Sutomo No. 6, Medan'),
+(5, 'Jl. Ahmad Yani No. 88, Bekasi'),
+(5, 'Jl. Rawa Belong No. 9, Jakarta Barat'),
+(6, 'Jl. Cemara No. 4, Depok'),
+(6, 'Jl. Gatot Subroto No. 40, Jakarta Selatan'),
+(7, 'Jl. Imam Bonjol No. 21, Bogor'),
+(7, 'Jl. Ciledug Raya No. 23, Tangerang'),
+(8, 'Jl. Gajah Mada No. 30, Semarang'),
+(8, 'Jl. Pemuda No. 77, Semarang'),
+(9, 'Jl. Siliwangi No. 12, Bandung'),
+(9, 'Jl. Kaliurang Km 6, Sleman'),
+(9, 'Jl. Pahlawan No. 3, Malang'),
+(10, 'Jl. Rajawali No. 56, Surabaya'),
+(10, 'Jl. Pandanaran No. 2, Semarang'),
+(11, 'Jl. Diponegoro No. 78, Denpasar'),
+(11, 'Jl. Cikini No. 2, Jakarta Pusat'),
+(12, 'Jl. Cendana No. 9, Medan'),
+(12, 'Jl. Veteran No. 21, Surakarta'),
+(13, 'Jl. Kalibata No. 77, Jakarta Selatan'),
+(13, 'Jl. Raya Bogor Km 27, Depok'),
+(13, 'Jl. Gading Serpong No. 66, Tangerang'),
+(14, 'Jl. Raya Margonda No. 99, Depok'),
+(14, 'Jl. Raden Saleh No. 18, Jakarta Pusat'),
+(15, 'Jl. Pondok Indah No. 12, Jakarta Selatan'),
+(15, 'Jl. Margasatwa No. 88, Jakarta Selatan'),
+(16, 'Jl. Letjen Suprapto No. 8, Palembang'),
+(16, 'Jl. Teuku Umar No. 10, Banda Aceh'),
+(16, 'Jl. Pajajaran No. 30, Bogor'),
+(17, 'Jl. Gatsu Barat No. 45, Denpasar'),
+(17, 'Jl. Gunung Sari No. 20, Bali'),
+(17, 'Jl. Ahmad Dahlan No. 15, Yogyakarta');
+(18, 'Jl. Rungkut Industri No. 5, Surabaya'),
+(18, 'Jl. Raya Darmo No. 15, Surabaya'),
+(18, 'Jl. Manyar No. 77, Surabaya'),
+(19, 'Jl. Tunjungan No. 1, Surabaya'),
+(19, 'Jl. Kebon Jeruk No. 17, Jakarta Barat'),
+(19, 'Jl. Kebayoran Baru No. 3, Jakarta Selatan'),
+(20, 'Jl. Asia Afrika No. 123, Bandung'),
+(20, 'Jl. Dago Atas No. 55, Bandung'),
+(20, 'Jl. Setiabudi No. 19, Bandung'),
 
 -- =============================================
 -- Transaksi_Pembelian
 -- =============================================
+INSERT INTO transaksi_pembelian (id_penonton, waktu_pembelian) VALUES
+(1, '2025-04-10 14:23:45'),
+(2, '2025-04-11 15:12:34'),
+(3, '2025-04-12 16:45:00'),
+(4, '2025-04-13 11:30:15'),
+(5, '2025-04-14 18:20:00'),
+(6, '2025-04-15 19:05:45'),
+(7, '2025-04-16 13:55:00'),
+(8, '2025-04-17 10:12:12'),
+(9, '2025-04-17 21:33:33'),
+(10, '2025-04-18 20:00:00'),
+(11, '2025-04-19 09:45:30'),
+(12, '2025-04-19 10:20:00'),
+(13, '2025-04-20 14:30:00'),
+(14, '2025-04-21 15:15:15'),
+(15, '2025-04-21 17:17:17'),
+(16, '2025-04-22 19:45:00'),
+(17, '2025-04-23 12:00:00'),
+(18, '2025-04-23 14:22:00'),
+(19, '2025-04-24 11:11:11'),
+(20, '2025-04-24 16:16:16'),
+(1, '2025-04-25 13:00:00'),
+(2, '2025-04-25 14:00:00'),
+(3, '2025-04-26 15:00:00'),
+(4, '2025-04-26 16:00:00'),
+(5, '2025-04-27 17:00:00'),
+(6, '2025-04-27 18:00:00'),
+(7, '2025-04-28 10:30:00'),
+(8, '2025-04-28 11:45:00'),
+(9, '2025-04-29 12:15:00'),
+(10, '2025-04-29 13:30:00'),
+(11, '2025-04-30 14:45:00'),
+(12, '2025-05-01 15:00:00'),
+(13, '2025-05-01 16:30:00'),
+(14, '2025-05-02 17:45:00'),
+(15, '2025-05-02 19:00:00'),
+(16, '2025-05-03 20:15:00'),
+(17, '2025-05-03 21:30:00'),
+(18, '2025-05-04 08:00:00'),
+(19, '2025-05-04 09:15:00'),
+(20, '2025-05-05 10:30:00'),
+(1, '2025-05-05 11:45:00'),
+(2, '2025-05-06 13:00:00'),
+(3, '2025-05-06 14:15:00'),
+(4, '2025-05-07 15:30:00'),
+(5, '2025-05-07 16:45:00'),
+(6, '2025-05-08 18:00:00'),
+(7, '2025-05-08 19:15:00'),
+(8, '2025-05-09 20:30:00'),
+(9, '2025-05-09 21:45:00'),
+(10, '2025-05-10 22:00:00');
 
 -- =============================================
 -- Terdaftar_Transaksi
 -- =============================================
-
-
-
+INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
+(1, 5, 2),
+(1, 12, 1),
+(2, 3, 1),
+(2, 14, 2),
+(3, 8, 3),
+(3, 18, 1),
+(4, 1, 2),
+(5, 6, 1),
+(6, 2, 1),
+(6, 11, 2),
+(7, 7, 3),
+(8, 20, 1),
+(9, 9, 2),
+(10, 4, 1),
+(11, 17, 1),
+(12, 5, 3),
+(13, 16, 1),
+(14, 13, 1),
+(15, 10, 2),
+(16, 6, 1),
+(17, 3, 1),
+(18, 19, 1),
+(19, 2, 2),
+(20, 1, 1),
+(21, 8, 2),
+(22, 14, 1),
+(23, 11, 2),
+(24, 18, 3),
+(25, 4, 1),
+(26, 20, 1),
+(27, 9, 2),
+(28, 7, 1),
+(29, 15, 2),
+(30, 13, 1),
+(31, 1, 3),
+(32, 6, 1),
+(33, 10, 1),
+(34, 3, 2),
+(35, 8, 1),
+(36, 12, 2),
+(37, 17, 1),
+(38, 14, 1),
+(39, 11, 2),
+(40, 16, 1),
+(41, 2, 3),
+(42, 5, 1),
+(43, 7, 1),
+(44, 4, 2),
+(45, 13, 2),
+(46, 9, 1),
+(47, 18, 1),
+(48, 19, 2),
+(49, 20, 1),
+(50, 10, 1),
+(1, 2, 1),
+(2, 7, 1),
+(3, 6, 2),
+(4, 12, 2),
+(5, 15, 1),
+(6, 4, 2),
+(7, 13, 1),
+(8, 3, 1),
+(9, 10, 3),
+(10, 1, 2),
+(11, 14, 1),
+(12, 16, 1),
+(13, 11, 2),
+(14, 9, 2),
+(15, 20, 1),
+(16, 5, 1),
+(17, 18, 1),
+(18, 8, 2),
+(19, 6, 2),
+(20, 17, 1),
+(21, 2, 1),
+(22, 19, 1),
+(23, 3, 1),
+(24, 14, 2),
+(25, 7, 3),
+(26, 1, 1),
+(27, 10, 2),
+(28, 12, 1),
+(29, 5, 2),
+(30, 16, 1),
+(31, 8, 1),
+(32, 18, 1),
+(33, 9, 1),
+(34, 20, 1),
+(35, 2, 2),
+(36, 6, 1),
+(37, 11, 1),
+(38, 13, 1),
+(39, 4, 2),
+(40, 17, 1),
+(41, 14, 1),
+(42, 3, 1),
+(43, 7, 1),
+(44, 15, 2),
+(45, 19, 1),
+(46, 10, 2),
+(47, 1, 1),
+(48, 12, 2),
+(49, 8, 2),
+(50, 5, 1);
