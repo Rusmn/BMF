@@ -2,25 +2,6 @@
 
 USE BMF;
 
-/*
-SET FOREIGN_KEY_CHECKS=0;
-
-TRUNCATE TABLE lokasi;
-TRUNCATE TABLE fasilitas;
-TRUNCATE TABLE pertunjukan;
-TRUNCATE TABLE artis;
-TRUNCATE TABLE genre_artis;
-TRUNCATE TABLE kontak_artis;
-TRUNCATE TABLE tampil;
-TRUNCATE TABLE tiket_reguler;
-TRUNCATE TABLE tiket_vip;
-TRUNCATE TABLE alamat_penonton;
-TRUNCATE TABLE nomor_telepon_penonton;
-TRUNCATE TABLE terdaftar_transaksi;
-
-SET FOREIGN_KEY_CHECKS=1;
-*/
-
 -- =============================================
 -- Lokasi
 -- =============================================

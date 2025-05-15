@@ -2,34 +2,6 @@
 -- CREATE DATABASE IF NOT EXISTS BMF;
 -- USE BMF;
 
---Drop
-
-/*
-SET FOREIGN_KEY_CHECKS = 0;
-
-DROP TABLE IF EXISTS tiket_vip;
-DROP TABLE IF EXISTS tiket_reguler;
-DROP TABLE IF EXISTS tiket;
-DROP TABLE IF EXISTS merchandise;
-DROP TABLE IF EXISTS panitia_pelaksana;
-DROP TABLE IF EXISTS tampil;
-DROP TABLE IF EXISTS kontak_artis;
-DROP TABLE IF EXISTS genre_artis;
-DROP TABLE IF EXISTS artis;
-DROP TABLE IF EXISTS vendor;
-DROP TABLE IF EXISTS sponsor;
-DROP TABLE IF EXISTS fasilitas;
-DROP TABLE IF EXISTS terdaftar_transaksi;
-DROP TABLE IF EXISTS alamat_penonton;
-DROP TABLE IF EXISTS nomor_telepon_penonton;
-DROP TABLE IF EXISTS transaksi_pembelian;
-DROP TABLE IF EXISTS pertunjukan;
-DROP TABLE IF EXISTS penonton;
-DROP TABLE IF EXISTS lokasi;
-
-SET FOREIGN_KEY_CHECKS = 0;
-*/
-
 -- Tabel utama
 CREATE TABLE lokasi (
     id_lokasi INT AUTO_INCREMENT PRIMARY KEY,
