@@ -2,63 +2,234 @@
 
 USE BMF;
 
+/*
+SET FOREIGN_KEY_CHECKS=0;
+
+TRUNCATE TABLE lokasi;
+TRUNCATE TABLE fasilitas;
+TRUNCATE TABLE pertunjukan;
+TRUNCATE TABLE artis;
+TRUNCATE TABLE genre_artis;
+TRUNCATE TABLE kontak_artis;
+TRUNCATE TABLE tampil;
+TRUNCATE TABLE tiket_reguler;
+TRUNCATE TABLE tiket_vip;
+TRUNCATE TABLE alamat_penonton;
+TRUNCATE TABLE nomor_telepon_penonton;
+TRUNCATE TABLE terdaftar_transaksi;
+
+SET FOREIGN_KEY_CHECKS=1;
+*/
+
 -- =============================================
 -- Lokasi
 -- =============================================
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (1, 'Stadion Gelora Bung Karno', 342138);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (2, 'JCC Senayan', 305044);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (3, 'Balai Kartini', 33401);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (4, 'ICE BSD', 102407);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (5, 'Stadion Pakansari', 271111);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (6, 'Gedung Graha Manggala', 39317);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (7, 'Sasana Budaya Ganesha', 22019);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (8, 'Stadion Si Jalak Harupat', 351285);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (9, 'Auditorium Telkom University', 131128);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (10, 'Universitas Indonesia Convention Center', 12905);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (11, 'Stadion Mandala Krida', 139855);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (12, 'Ciputra Artpreneur', 108752);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (13, 'Stadion Batakan', 106169);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (14, 'Jakarta International Expo', 151654);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (15, 'Stadion Manahan Solo', 399691);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (16, 'Universitas Airlangga Hall', 153353);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (17, 'Stadion Gajayana', 144056);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (18, 'The Kasablanka Hall', 272824);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (19, 'Stadion Kapten I Wayan Dipta', 459135);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (20, 'Taman Budaya Jawa Barat', 93729);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (21, 'Universitas Negeri Malang Dome', 254655);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (22, 'Stadion Kanjuruhan', 477444);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (23, 'Jogja Expo Center', 210128);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (24, 'Stadion Sriwedari', 373587);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (25, 'Gedung Pewayangan TMII', 344409);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (26, 'Gedung Juang 45 Surabaya', 13968);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (27, 'Universitas Padjadjaran Convention Hall', 26613);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (28, 'Stadion Patriot Candrabhaga', 355107);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (29, 'Sabuga ITB', 329446);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (30, 'Stadion Brawijaya', 405053);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (31, 'Taman Ismail Marzuki', 222354);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (32, 'Balai Sarbini', 246709);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (33, 'Gor Amongrogo', 291823);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (34, 'Stadion Utama Riau', 487066);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (35, 'Graha Saba Buana', 249221);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (36, 'Universitas Diponegoro Convention Hall', 140177);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (37, 'Gedung Soemardjo IPB', 80157);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (38, 'Stadion Maguwoharjo', 422985);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (39, 'Lapangan Gasibu', 342242);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (40, 'The Trans Convention Center', 432553);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (41, 'GOR Sritex Arena', 314148);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (42, 'Gedung Pertunjukan Taman Budaya Bali', 435276);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (43, 'Gedung Wanita Semarang', 260387);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (44, 'Stadion Tri Dharma Gresik', 236810);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (45, 'Gedung Kesenian Jakarta', 74337);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (46, 'Bali Nusa Dua Convention Center', 408589);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (47, 'Cendrawasih Hall Jakarta', 321731);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (48, 'Stadion Mandala Papua', 122986);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (49, 'Universitas Andalas Convention Hall', 220030);
-INSERT INTO Lokasi (id_lokasi, nama, kapasitas) VALUES (50, 'Gedung Merdeka Bandung', 218573);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (1, 'Stadion Gelora Bung Karno', 342138);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (2, 'JCC Senayan', 305044);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (3, 'Balai Kartini', 33401);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (4, 'ICE BSD', 102407);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (5, 'Stadion Pakansari', 271111);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (6, 'Gedung Graha Manggala', 39317);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (7, 'Sasana Budaya Ganesha', 22019);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (8, 'Stadion Si Jalak Harupat', 351285);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (9, 'Auditorium Telkom University', 131128);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (10, 'Universitas Indonesia Convention Center', 12905);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (11, 'Stadion Mandala Krida', 139855);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (12, 'Ciputra Artpreneur', 108752);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (13, 'Stadion Batakan', 106169);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (14, 'Jakarta International Expo', 151654);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (15, 'Stadion Manahan Solo', 399691);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (16, 'Universitas Airlangga Hall', 153353);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (17, 'Stadion Gajayana', 144056);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (18, 'The Kasablanka Hall', 272824);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (19, 'Stadion Kapten I Wayan Dipta', 459135);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (20, 'Taman Budaya Jawa Barat', 93729);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (21, 'Universitas Negeri Malang Dome', 254655);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (22, 'Stadion Kanjuruhan', 477444);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (23, 'Jogja Expo Center', 210128);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (24, 'Stadion Sriwedari', 373587);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (25, 'Gedung Pewayangan TMII', 344409);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (26, 'Gedung Juang 45 Surabaya', 13968);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (27, 'Universitas Padjadjaran Convention Hall', 26613);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (28, 'Stadion Patriot Candrabhaga', 355107);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (29, 'Sabuga ITB', 329446);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (30, 'Stadion Brawijaya', 405053);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (31, 'Taman Ismail Marzuki', 222354);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (32, 'Balai Sarbini', 246709);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (33, 'Gor Amongrogo', 291823);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (34, 'Stadion Utama Riau', 487066);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (35, 'Graha Saba Buana', 249221);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (36, 'Universitas Diponegoro Convention Hall', 140177);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (37, 'Gedung Soemardjo IPB', 80157);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (38, 'Stadion Maguwoharjo', 422985);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (39, 'Lapangan Gasibu', 342242);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (40, 'The Trans Convention Center', 432553);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (41, 'GOR Sritex Arena', 314148);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (42, 'Gedung Pertunjukan Taman Budaya Bali', 435276);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (43, 'Gedung Wanita Semarang', 260387);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (44, 'Stadion Tri Dharma Gresik', 236810);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (45, 'Gedung Kesenian Jakarta', 74337);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (46, 'Bali Nusa Dua Convention Center', 408589);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (47, 'Cendrawasih Hall Jakarta', 321731);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (48, 'Stadion Mandala Papua', 122986);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (49, 'Universitas Andalas Convention Hall', 220030);
+INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (50, 'Gedung Merdeka Bandung', 218573);
 
 -- =============================================
--- Fasilitas_Lokasi
+-- Fasilitas_lokasi
 -- =============================================
+
+INSERT INTO fasilitas (id_lokasi, fasilitas) VALUES
+(1, 'Parkir Luas'),
+(1, 'Wi-Fi Gratis'),
+(1, 'Toilet Umum'),
+(2, 'AC Sentral'),
+(2, 'Ruang VIP'),
+(2, 'Lift'),
+(3, 'Parkir Khusus Difabel'),
+(3, 'Ruang Tunggu'),
+(3, 'Area Merokok'),
+(4, 'Kantin'),
+(4, 'Sound System'),
+(4, 'Panggung Lengkap'),
+(5, 'Koneksi Internet Cepat'),
+(5, 'Ruang Ganti'),
+(5, 'Keamanan 24 Jam'),
+(6, 'Layanan Kebersihan'),
+(6, 'Toilet Wanita'),
+(6, 'Kursi Roda'),
+(7, 'AC Central'),
+(7, 'Area Parkir'),
+(7, 'Lampu Panggung'),
+(8, 'Parkir Kendaraan Besar'),
+(8, 'Kantin'),
+(8, 'Wi-Fi'),
+(9, 'Ruang Pertemuan'),
+(9, 'AC'),
+(9, 'Area Merokok'),
+(10, 'Ruang Workshop'),
+(10, 'Toilet'),
+(10, 'Lounge'),
+(11, 'Parkir VIP'),
+(11, 'Panggung Outdoor'),
+(11, 'Layanan Keamanan'),
+(12, 'Restoran'),
+(12, 'Wi-Fi'),
+(12, 'AC'),
+(13, 'Layanan Transportasi'),
+(13, 'Area Duduk'),
+(13, 'Kantin'),
+(14, 'Toilet Umum'),
+(14, 'Ruang VIP'),
+(14, 'Koneksi Internet'),
+(15, 'Area Parkir'),
+(15, 'AC'),
+(15, 'Keamanan 24 Jam'),
+(16, 'Wi-Fi'),
+(16, 'Layanan Kebersihan'),
+(16, 'Ruang Workshop'),
+(17, 'Panggung'),
+(17, 'Lampu Panggung'),
+(17, 'Parkir Luas'),
+(18, 'Toilet'),
+(18, 'Ruang Tunggu'),
+(18, 'AC'),
+(19, 'Layanan Medis'),
+(19, 'Koneksi Internet'),
+(19, 'Area Parkir'),
+(20, 'Ruang Workshop'),
+(20, 'AC'),
+(20, 'Toilet'),
+(21, 'Wi-Fi'),
+(21, 'Area Parkir'),
+(21, 'Ruang Meeting'),
+(22, 'Layanan Keamanan'),
+(22, 'Panggung Lengkap'),
+(22, 'AC'),
+(23, 'Kantin'),
+(23, 'Toilet'),
+(23, 'Layanan Kebersihan'),
+(24, 'Parkir Luas'),
+(24, 'Wi-Fi'),
+(24, 'AC'),
+(25, 'Ruang Pertemuan'),
+(25, 'Layanan Keamanan'),
+(25, 'Koneksi Internet'),
+(26, 'Toilet'),
+(26, 'Ruang Tunggu'),
+(26, 'Area Merokok'),
+(27, 'Wi-Fi'),
+(27, 'AC'),
+(27, 'Ruang Workshop'),
+(28, 'Parkir Luas'),
+(28, 'Toilet'),
+(28, 'Layanan Kebersihan'),
+(29, 'Panggung'),
+(29, 'Wi-Fi'),
+(29, 'AC'),
+(30, 'Layanan Keamanan'),
+(30, 'Area Duduk'),
+(30, 'Koneksi Internet'),
+(31, 'Kantin'),
+(31, 'Toilet'),
+(31, 'Wi-Fi'),
+(32, 'AC'),
+(32, 'Ruang Meeting'),
+(32, 'Parkir Luas'),
+(33, 'Lampu Panggung'),
+(33, 'Toilet'),
+(33, 'Wi-Fi'),
+(34, 'Area Parkir'),
+(34, 'Layanan Medis'),
+(34, 'AC'),
+(35, 'Wi-Fi'),
+(35, 'Toilet'),
+(35, 'Ruang Workshop'),
+(36, 'Parkir'),
+(36, 'Koneksi Internet'),
+(36, 'Layanan Kebersihan'),
+(37, 'AC'),
+(37, 'Ruang Meeting'),
+(37, 'Toilet'),
+(38, 'Layanan Keamanan'),
+(38, 'Wi-Fi'),
+(38, 'Parkir Luas'),
+(39, 'Area Duduk'),
+(39, 'Toilet'),
+(39, 'AC'),
+(40, 'Koneksi Internet Cepat'),
+(40, 'Wi-Fi'),
+(40, 'Layanan Kebersihan'),
+(41, 'Panggung'),
+(41, 'AC'),
+(41, 'Toilet'),
+(42, 'Layanan Keamanan'),
+(42, 'Wi-Fi'),
+(42, 'Ruang Meeting'),
+(43, 'AC'),
+(43, 'Parkir Luas'),
+(43, 'Toilet'),
+(44, 'Koneksi Internet'),
+(44, 'Wi-Fi'),
+(44, 'Layanan Kebersihan'),
+(45, 'Ruang Workshop'),
+(45, 'Toilet'),
+(45, 'AC'),
+(46, 'Area Parkir'),
+(46, 'Wi-Fi'),
+(46, 'Layanan Keamanan'),
+(47, 'Toilet'),
+(47, 'AC'),
+(47, 'Wi-Fi'),
+(48, 'Layanan Medis'),
+(48, 'Parkir Luas'),
+(48, 'AC'),
+(49, 'Wi-Fi'),
+(49, 'Toilet'),
+(49, 'Ruang Meeting'),
+(50, 'AC'),
+(50, 'Parkir Luas'),
+(50, 'Wi-Fi');
 
 -- =============================================
 -- Pertunjukan
@@ -667,6 +838,31 @@ INSERT INTO tiket_reguler (id_tiket) VALUES
 (35);
 
 -- =============================================
+-- Merchandise
+-- =============================================
+INSERT INTO merchandise (kategori, harga) VALUES
+('Concert T-Shirt', 200000.00),
+('Official Poster', 50000.00),
+('Lightstick', 350000.00),
+('Physical Album', 150000.00),
+('Band Cap', 120000.00),
+('Tote Bag', 100000.00),
+('Keychain', 30000.00),
+('Lanyard Exclusive', 25000.00),
+('Sticker Pack', 20000.00),
+('Hoodie Limited Edition', 275000.00),
+('Photocard Set', 60000.00),
+('Band-Themed Notebook', 45000.00),
+('CD Boxset', 250000.00),
+('Glow Wristband', 40000.00),
+('Mini Banner', 35000.00),
+('Band Face Mask', 25000.00),
+('Folding Fan', 30000.00),
+('Necklace - Band Logo', 85000.00),
+('Rubber Wristband', 20000.00),
+('Enamel Pin Set', 30000.00);
+
+-- =============================================
 -- Tiker_VIP
 -- =============================================
 
@@ -711,31 +907,6 @@ INSERT INTO tiket_vip (id_tiket, kode_barang) VALUES
 (48, 1),
 (49, 4),
 (50, 3);
-
--- =============================================
--- Merchandise
--- =============================================
-INSERT INTO merchandise (kategori, harga) VALUES
-('Concert T-Shirt', 200000.00),
-('Official Poster', 50000.00),
-('Lightstick', 350000.00),
-('Physical Album', 150000.00),
-('Band Cap', 120000.00),
-('Tote Bag', 100000.00),
-('Keychain', 30000.00),
-('Lanyard Exclusive', 25000.00),
-('Sticker Pack', 20000.00),
-('Hoodie Limited Edition', 275000.00),
-('Photocard Set', 60000.00),
-('Band-Themed Notebook', 45000.00),
-('CD Boxset', 250000.00),
-('Glow Wristband', 40000.00),
-('Mini Banner', 35000.00),
-('Band Face Mask', 25000.00),
-('Folding Fan', 30000.00),
-('Necklace - Band Logo', 85000.00),
-('Rubber Wristband', 20000.00),
-('Enamel Pin Set', 30000.00);
 
 -- =============================================
 -- Nomor_Telepon_Penonton
@@ -836,7 +1007,7 @@ INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
 (16, 'Jl. Pajajaran No. 30, Bogor'),
 (17, 'Jl. Gatsu Barat No. 45, Denpasar'),
 (17, 'Jl. Gunung Sari No. 20, Bali'),
-(17, 'Jl. Ahmad Dahlan No. 15, Yogyakarta');
+(17, 'Jl. Ahmad Dahlan No. 15, Yogyakarta'),
 (18, 'Jl. Rungkut Industri No. 5, Surabaya'),
 (18, 'Jl. Raya Darmo No. 15, Surabaya'),
 (18, 'Jl. Manyar No. 77, Surabaya'),
@@ -845,7 +1016,7 @@ INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
 (19, 'Jl. Kebayoran Baru No. 3, Jakarta Selatan'),
 (20, 'Jl. Asia Afrika No. 123, Bandung'),
 (20, 'Jl. Dago Atas No. 55, Bandung'),
-(20, 'Jl. Setiabudi No. 19, Bandung'),
+(20, 'Jl. Setiabudi No. 19, Bandung');
 
 -- =============================================
 -- Transaksi_Pembelian
@@ -1002,7 +1173,6 @@ INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
 (40, 17, 1),
 (41, 14, 1),
 (42, 3, 1),
-(43, 7, 1),
 (44, 15, 2),
 (45, 19, 1),
 (46, 10, 2),
