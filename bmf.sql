@@ -1,6 +1,6 @@
 -- Buat database
--- CREATE DATABASE IF NOT EXISTS BMF;
--- USE BMF;
+CREATE DATABASE IF NOT EXISTS BMF;
+USE BMF;
 
 -- Tabel utama
 CREATE TABLE lokasi (

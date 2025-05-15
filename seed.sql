@@ -3,7 +3,7 @@
 USE BMF;
 
 -- =============================================
--- Lokasi
+-- lokasi
 -- =============================================
 INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (1, 'Stadion Gelora Bung Karno', 342138);
 INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (2, 'JCC Senayan', 305044);
@@ -57,7 +57,7 @@ INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (49, 'Universitas Andalas
 INSERT INTO lokasi (id_lokasi, nama, kapasitas) VALUES (50, 'Gedung Merdeka Bandung', 218573);
 
 -- =============================================
--- Fasilitas_lokasi
+-- fasilitas_lokasi
 -- =============================================
 
 INSERT INTO fasilitas (id_lokasi, fasilitas) VALUES
@@ -213,7 +213,7 @@ INSERT INTO fasilitas (id_lokasi, fasilitas) VALUES
 (50, 'Wi-Fi');
 
 -- =============================================
--- Pertunjukan
+-- pertunjukan
 -- =============================================
 INSERT INTO pertunjukan (nama, waktu, id_lokasi) VALUES 
 ('Soundnesia Vibes', '2025-03-12 19:00:00', 1),
@@ -268,9 +268,9 @@ INSERT INTO pertunjukan (nama, waktu, id_lokasi) VALUES
 ('Seni & Suara Expo', '2025-07-28 14:00:00', 50);
 
 -- =============================================
--- Sponsor
+-- sponsor
 -- =============================================
-INSERT INTO Sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontribusi) VALUES 
+INSERT INTO sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontribusi) VALUES 
 (1, 'Utama', 'Telkom Kreatif Nusantara', 150000000.00),
 (1, 'Media Partner', 'GenZ SoundWave', 25000000.00),
 (2, 'Utama', 'Indie Musik Indonesia', 120000000.00),
@@ -334,7 +334,7 @@ INSERT INTO Sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontrib
 (50, 'Utama', 'Suara Anak Bangsa', 128000000.00);
 
 -- =============================================
--- Vendor
+-- vendor
 -- =============================================
 INSERT INTO vendor (id_pertunjukan, nama, jenis_layanan) VALUES 
 (1, 'SonicBoom Audio', 'Sound System'),
@@ -495,7 +495,7 @@ INSERT INTO vendor (id_pertunjukan, nama, jenis_layanan) VALUES
 (50, 'LightUp Crew', 'Lighting');
 
 -- =============================================
--- Artis
+-- artis
 -- =============================================
 INSERT INTO artis (id_artis, nama, negara_asal, biografi) VALUES
 (1, 'Lunar Echo', 'Indonesia', 'Grup elektronik-pop asal Jakarta yang dikenal dengan beat dreamy dan lirik puitis.'),
@@ -520,7 +520,7 @@ INSERT INTO artis (id_artis, nama, negara_asal, biografi) VALUES
 (20, 'EchoRush', 'India', 'Band alternative rock dengan elemen sitar dan synth.');
 
 -- =============================================
--- Genre_Artis
+-- genre_artis
 -- =============================================
 INSERT INTO genre_artis (id_artis, genre) VALUES
 (1, 'Electronic Pop'),
@@ -584,7 +584,7 @@ INSERT INTO genre_artis (id_artis, genre) VALUES
 (20, 'Synth Rock');
 
 -- =============================================
--- Kontak_Artis
+-- kontak_artis
 -- =============================================
 INSERT INTO kontak_artis (id_artis, kontak) VALUES
 (1, 'lunarecho@artistmail.com'),
@@ -648,7 +648,7 @@ INSERT INTO kontak_artis (id_artis, kontak) VALUES
 (20, '@echorush_band');
 
 -- =============================================
--- Tampil
+-- tampil
 -- =============================================
 INSERT INTO tampil (id_artis, id_pertunjukan) VALUES
 -- Pertunjukan 1–10
@@ -676,7 +676,7 @@ INSERT INTO tampil (id_artis, id_pertunjukan) VALUES
 (7, 20), (8, 20), (9, 20), (10, 20), (11, 20);
 
 -- =============================================
--- Penonton
+-- penonton
 -- =============================================
 INSERT INTO penonton (nama, email) VALUES
 ('Erlangga Wiryawan', 'erlangga.wiryawan@email.com'),
@@ -701,7 +701,7 @@ INSERT INTO penonton (nama, email) VALUES
 ('Zidan Prakoso', 'zidan.prakoso@email.com');
 
 -- =============================================
--- Panitia_Pelaksana
+-- panitia_pelaksana
 -- =============================================
 
 INSERT INTO panitia_pelaksana (nama, kontribusi, kontak, id_pertunjukan) VALUES
@@ -749,7 +749,7 @@ INSERT INTO panitia_pelaksana (nama, kontribusi, kontak, id_pertunjukan) VALUES
 ('Fajar Hidayat', 'Registrasi', '081234567842', 20);
 
 -- =============================================
--- Tiket
+-- tiket
 -- =============================================
 INSERT INTO tiket (kategori, harga, status_pembayaran, id_pertunjukan, id_penonton) VALUES
 ('reguler', 137516.00, 'lunas', 6, 1),
@@ -804,7 +804,7 @@ INSERT INTO tiket (kategori, harga, status_pembayaran, id_pertunjukan, id_penont
 ('VIP', 135127.00, 'belum lunas', 7, 10);
 
 -- =============================================
--- Tiker_Reguler
+-- tiker_reguler
 -- =============================================
 INSERT INTO tiket_reguler (id_tiket) VALUES
 (1),
@@ -819,7 +819,7 @@ INSERT INTO tiket_reguler (id_tiket) VALUES
 (35);
 
 -- =============================================
--- Merchandise
+-- merchandise
 -- =============================================
 INSERT INTO merchandise (kategori, harga) VALUES
 ('Concert T-Shirt', 200000.00),
@@ -844,7 +844,7 @@ INSERT INTO merchandise (kategori, harga) VALUES
 ('Enamel Pin Set', 30000.00);
 
 -- =============================================
--- Tiker_VIP
+-- tiker_vip
 -- =============================================
 
 INSERT INTO tiket_vip (id_tiket, kode_barang) VALUES
@@ -890,7 +890,7 @@ INSERT INTO tiket_vip (id_tiket, kode_barang) VALUES
 (50, 3);
 
 -- =============================================
--- Nomor_Telepon_Penonton
+-- nomor_telepon_penonton
 -- =============================================
 INSERT INTO nomor_telepon_penonton (id_penonton, nomor_telepon) VALUES
 (1, '081234567890'),
@@ -945,7 +945,7 @@ INSERT INTO nomor_telepon_penonton (id_penonton, nomor_telepon) VALUES
 (20, '083812345123');
 
 -- =============================================
--- Alamat_Penonton
+-- alamat_penonton
 -- =============================================
 INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
 (1, 'Jl. Melati No. 12, Bandung'),
@@ -1000,7 +1000,7 @@ INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
 (20, 'Jl. Setiabudi No. 19, Bandung');
 
 -- =============================================
--- Transaksi_Pembelian
+-- transaksi_pembelian
 -- =============================================
 INSERT INTO transaksi_pembelian (id_penonton, waktu_pembelian) VALUES
 (1, '2025-04-10 14:23:45'),
@@ -1055,7 +1055,7 @@ INSERT INTO transaksi_pembelian (id_penonton, waktu_pembelian) VALUES
 (10, '2025-05-10 22:00:00');
 
 -- =============================================
--- Terdaftar_Transaksi
+-- terdaftar_transaksi
 -- =============================================
 INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
 (1, 5, 2),
