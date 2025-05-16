@@ -34,11 +34,17 @@ CREATE TABLE tiket (
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton)
 ) ENGINE=InnoDB;
 
+CREATE TABLE merchandise (
+    kode_barang INT AUTO_INCREMENT PRIMARY KEY,
+    kategori VARCHAR(100) NOT NULL,
+    harga DECIMAL(10,2) NOT NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE transaksi_pembelian (
     nomor_transaksi INT AUTO_INCREMENT PRIMARY KEY,
     id_penonton INT,
     waktu_pembelian DATETIME NOT NULL,
-    total_harga DECIMAL(10,2) NOT NULL,
+    total_harga DECIMAL(15,2),
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -101,6 +107,14 @@ CREATE TABLE kontak_artis (
     FOREIGN KEY (id_artis) REFERENCES artis(id_artis) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE tampil (
+    id_artis INT,
+    id_pertunjukan INT,
+    PRIMARY KEY (id_artis, id_pertunjukan),
+    FOREIGN KEY (id_artis) REFERENCES artis(id_artis),
+    FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan)
+) ENGINE=InnoDB;
+
 CREATE TABLE penampilan (
     id_artis INT,
     id_pertunjukan INT,
@@ -116,12 +130,6 @@ CREATE TABLE panitia_pelaksana (
     kontak VARCHAR(100) NOT NULL,
     id_pertunjukan INT NOT NULL,
     FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan)
-) ENGINE=InnoDB;
-
-CREATE TABLE merchandise (
-    kode_barang INT AUTO_INCREMENT PRIMARY KEY,
-    kategori VARCHAR(100) NOT NULL,
-    harga DECIMAL(10,2) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE nomor_telepon_penonton (

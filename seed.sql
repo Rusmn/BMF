@@ -118,7 +118,7 @@ INSERT INTO pertunjukan (nama, waktu, id_lokasi) VALUES
 -- =============================================
 -- Sponsor
 -- =============================================
-INSERT INTO Sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontribusi) VALUES 
+INSERT INTO sponsor (id_pertunjukan, jenis_sponsorship, nama_perusahaan, kontribusi) VALUES 
 (1, 'Utama', 'Telkom Kreatif Nusantara', 150000000.00),
 (1, 'Media Partner', 'GenZ SoundWave', 25000000.00),
 (2, 'Utama', 'Indie Musik Indonesia', 120000000.00),
@@ -667,6 +667,31 @@ INSERT INTO tiket_reguler (id_tiket) VALUES
 (35);
 
 -- =============================================
+-- Merchandise
+-- =============================================
+INSERT INTO merchandise (kategori, harga) VALUES
+('Concert T-Shirt', 200000.00),
+('Official Poster', 50000.00),
+('Lightstick', 350000.00),
+('Physical Album', 150000.00),
+('Band Cap', 120000.00),
+('Tote Bag', 100000.00),
+('Keychain', 30000.00),
+('Lanyard Exclusive', 25000.00),
+('Sticker Pack', 20000.00),
+('Hoodie Limited Edition', 275000.00),
+('Photocard Set', 60000.00),
+('Band-Themed Notebook', 45000.00),
+('CD Boxset', 250000.00),
+('Glow Wristband', 40000.00),
+('Mini Banner', 35000.00),
+('Band Face Mask', 25000.00),
+('Folding Fan', 30000.00),
+('Necklace - Band Logo', 85000.00),
+('Rubber Wristband', 20000.00),
+('Enamel Pin Set', 30000.00);
+
+-- =============================================
 -- Tiker_VIP
 -- =============================================
 
@@ -711,31 +736,6 @@ INSERT INTO tiket_vip (id_tiket, kode_barang) VALUES
 (48, 1),
 (49, 4),
 (50, 3);
-
--- =============================================
--- Merchandise
--- =============================================
-INSERT INTO merchandise (kategori, harga) VALUES
-('Concert T-Shirt', 200000.00),
-('Official Poster', 50000.00),
-('Lightstick', 350000.00),
-('Physical Album', 150000.00),
-('Band Cap', 120000.00),
-('Tote Bag', 100000.00),
-('Keychain', 30000.00),
-('Lanyard Exclusive', 25000.00),
-('Sticker Pack', 20000.00),
-('Hoodie Limited Edition', 275000.00),
-('Photocard Set', 60000.00),
-('Band-Themed Notebook', 45000.00),
-('CD Boxset', 250000.00),
-('Glow Wristband', 40000.00),
-('Mini Banner', 35000.00),
-('Band Face Mask', 25000.00),
-('Folding Fan', 30000.00),
-('Necklace - Band Logo', 85000.00),
-('Rubber Wristband', 20000.00),
-('Enamel Pin Set', 30000.00);
 
 -- =============================================
 -- Nomor_Telepon_Penonton
@@ -795,7 +795,7 @@ INSERT INTO nomor_telepon_penonton (id_penonton, nomor_telepon) VALUES
 -- =============================================
 -- Alamat_Penonton
 -- =============================================
-INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
+INSERT INTO alamat (id_penonton, alamat) VALUES
 (1, 'Jl. Melati No. 12, Bandung'),
 (1, 'Jl. Cempaka 45, Jakarta Selatan'),
 (1, 'Jl. Sabang No. 14, Jakarta Pusat'),
@@ -836,7 +836,7 @@ INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
 (16, 'Jl. Pajajaran No. 30, Bogor'),
 (17, 'Jl. Gatsu Barat No. 45, Denpasar'),
 (17, 'Jl. Gunung Sari No. 20, Bali'),
-(17, 'Jl. Ahmad Dahlan No. 15, Yogyakarta');
+(17, 'Jl. Ahmad Dahlan No. 15, Yogyakarta'),
 (18, 'Jl. Rungkut Industri No. 5, Surabaya'),
 (18, 'Jl. Raya Darmo No. 15, Surabaya'),
 (18, 'Jl. Manyar No. 77, Surabaya'),
@@ -845,7 +845,7 @@ INSERT INTO alamat_penonton (id_penonton, alamat) VALUES
 (19, 'Jl. Kebayoran Baru No. 3, Jakarta Selatan'),
 (20, 'Jl. Asia Afrika No. 123, Bandung'),
 (20, 'Jl. Dago Atas No. 55, Bandung'),
-(20, 'Jl. Setiabudi No. 19, Bandung'),
+(20, 'Jl. Setiabudi No. 19, Bandung');
 
 -- =============================================
 -- Transaksi_Pembelian
@@ -905,7 +905,7 @@ INSERT INTO transaksi_pembelian (id_penonton, waktu_pembelian) VALUES
 -- =============================================
 -- Terdaftar_Transaksi
 -- =============================================
-INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
+INSERT INTO terdapat_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
 (1, 5, 2),
 (1, 12, 1),
 (2, 3, 1),
@@ -1002,7 +1002,7 @@ INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
 (40, 17, 1),
 (41, 14, 1),
 (42, 3, 1),
-(43, 7, 1),
+(43, 8, 1),
 (44, 15, 2),
 (45, 19, 1),
 (46, 10, 2),
@@ -1010,3 +1010,13 @@ INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
 (48, 12, 2),
 (49, 8, 2),
 (50, 5, 1);
+
+UPDATE transaksi_pembelian tp
+JOIN (
+    SELECT tt.nomor_transaksi, SUM(m.harga * tt.kuantitas) AS total
+    FROM terdapat_transaksi tt
+    JOIN merchandise m ON tt.kode_barang = m.kode_barang
+    GROUP BY tt.nomor_transaksi
+) AS totals
+ON tp.nomor_transaksi = totals.nomor_transaksi
+SET tp.total_harga = totals.total;
