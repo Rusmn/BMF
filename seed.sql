@@ -1306,13 +1306,3 @@ INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
 (48, 12, 2),
 (49, 8, 2),
 (50, 5, 1);
-
-UPDATE transaksi_pembelian tp
-JOIN (
-    SELECT tt.nomor_transaksi, SUM(m.harga * tt.kuantitas) AS total
-    FROM terdaftar_transaksi tt
-    JOIN merchandise m ON tt.kode_barang = m.kode_barang
-    GROUP BY tt.nomor_transaksi
-) AS totals
-ON tp.nomor_transaksi = totals.nomor_transaksi
-SET tp.total_harga = totals.total;
