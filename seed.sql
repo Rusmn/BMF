@@ -1298,6 +1298,7 @@ INSERT INTO terdaftar_transaksi (nomor_transaksi, kode_barang, kuantitas) VALUES
 (40, 17, 1),
 (41, 14, 1),
 (42, 3, 1),
+(43, 8, 1),
 (44, 15, 2),
 (45, 19, 1),
 (46, 10, 2),
