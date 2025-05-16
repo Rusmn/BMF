@@ -845,7 +845,7 @@ INSERT INTO tiket (kategori, harga, status_pembayaran, id_pertunjukan, id_penont
 ('VIP', 105589.00, 'lunas', 11, 7),
 ('VIP', 125105.00, 'belum lunas', 19, 8),
 ('VIP', 120838.00, 'belum lunas', 11, 9),
-('VIP', 135127.00, 'belum lunas', 7, 10);
+('VIP', 135127.00, 'belum lunas', 7, 10),
 ('VIP', 112340.00, 'lunas', 1, 11),
 ('VIP', 129999.00, 'belum lunas', 2, 12),
 ('VIP', 101010.00, 'lunas', 3, 13),
@@ -895,10 +895,10 @@ INSERT INTO tiket (kategori, harga, status_pembayaran, id_pertunjukan, id_penont
 ('reguler', 101000.00, 'lunas', 17, 10),
 ('reguler', 103000.00, 'belum lunas', 18, 11),
 ('reguler', 96000.00, 'lunas', 19, 12),
-('reguler', 92000.00, 'belum lunas', 20, 13),
+('reguler', 92000.00, 'belum lunas', 20, 13);
 
 -- =============================================
--- tiker_reguler
+-- tiket_reguler
 -- =============================================
 INSERT INTO tiket_reguler (id_tiket) VALUES
 (1),
