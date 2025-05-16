@@ -38,7 +38,6 @@ CREATE TABLE transaksi_pembelian (
     nomor_transaksi INT AUTO_INCREMENT PRIMARY KEY,
     id_penonton INT,
     waktu_pembelian DATETIME NOT NULL,
-    total_harga DECIMAL(15,2),
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
