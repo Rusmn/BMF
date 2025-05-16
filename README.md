@@ -18,11 +18,11 @@
 | Tiket_Reguler | x | 
 | Tiket_VIP | x | 
 | Mendapatkan | x | 
-| Merchandise | v | 
-| Nomor_Telepon_Penonton | v | 
-| Alamat_Penonton | v | 
-| Transaksi_Pembelian | v | 
-| Terdaftar_Transaksi | v | 
+| Merchandise | x | 
+| Nomor_Telepon_Penonton | x | 
+| Alamat_Penonton | x | 
+| Transaksi_Pembelian | x | 
+| Terdaftar_Transaksi | x | 
 
 ## Inisialisasi
 ### Linux

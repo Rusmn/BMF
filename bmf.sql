@@ -1,6 +1,6 @@
 -- Buat database
--- CREATE DATABASE IF NOT EXISTS BMF;
--- USE BMF;
+CREATE DATABASE IF NOT EXISTS BMF;
+USE BMF;
 
 -- Tabel utama
 CREATE TABLE lokasi (
@@ -34,12 +34,6 @@ CREATE TABLE tiket (
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton)
 ) ENGINE=InnoDB;
 
-CREATE TABLE merchandise (
-    kode_barang INT AUTO_INCREMENT PRIMARY KEY,
-    kategori VARCHAR(100) NOT NULL,
-    harga DECIMAL(10,2) NOT NULL
-) ENGINE=InnoDB;
-
 CREATE TABLE transaksi_pembelian (
     nomor_transaksi INT AUTO_INCREMENT PRIMARY KEY,
     id_penonton INT,
@@ -48,14 +42,20 @@ CREATE TABLE transaksi_pembelian (
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE merchandise (
+    kode_barang INT AUTO_INCREMENT PRIMARY KEY,
+    kategori VARCHAR(100) NOT NULL,
+    harga DECIMAL(10,2) NOT NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE tiket_reguler (
     id_tiket INT PRIMARY KEY,
     FOREIGN KEY (id_tiket) REFERENCES tiket(id_tiket) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE tiket_vip (
-    id_tiket INT,
-    kode_barang INT,
+    id_tiket INT NOT NULL,
+    kode_barang INT NOT NULL,
     PRIMARY KEY (id_tiket, kode_barang),
     FOREIGN KEY (id_tiket) REFERENCES tiket(id_tiket) ON DELETE CASCADE,
     FOREIGN KEY (kode_barang) REFERENCES merchandise(kode_barang)
@@ -115,14 +115,6 @@ CREATE TABLE tampil (
     FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan)
 ) ENGINE=InnoDB;
 
-CREATE TABLE penampilan (
-    id_artis INT,
-    id_pertunjukan INT,
-    PRIMARY KEY (id_artis, id_pertunjukan),
-    FOREIGN KEY (id_artis) REFERENCES artis(id_artis),
-    FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan)
-) ENGINE=InnoDB;
-
 CREATE TABLE panitia_pelaksana (
     id_panitia INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,
@@ -139,14 +131,14 @@ CREATE TABLE nomor_telepon_penonton (
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE alamat (
+CREATE TABLE alamat_penonton (
     id_penonton INT,
     alamat VARCHAR(255),
     PRIMARY KEY (id_penonton, alamat),
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE terdapat_transaksi (
+CREATE TABLE terdaftar_transaksi (
     nomor_transaksi INT,
     kode_barang INT,
     kuantitas INT NOT NULL,
