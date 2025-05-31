@@ -30,8 +30,8 @@ CREATE TABLE tiket (
     status_pembayaran ENUM('lunas', 'belum lunas') NOT NULL,
     id_pertunjukan INT NOT NULL,
     id_penonton INT,
-    FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan),
-    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton)
+    FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan) ON DELETE RESTRICT,
+    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 CREATE TABLE transaksi_pembelian (
@@ -111,8 +111,8 @@ CREATE TABLE tampil (
     id_artis INT,
     id_pertunjukan INT,
     PRIMARY KEY (id_artis, id_pertunjukan),
-    FOREIGN KEY (id_artis) REFERENCES artis(id_artis),
-    FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan)
+    FOREIGN KEY (id_artis) REFERENCES artis(id_artis) ON DELETE RESTRICT,
+    FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan) ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 CREATE TABLE panitia_pelaksana (
@@ -151,6 +151,42 @@ CREATE TABLE terdaftar_transaksi (
     FOREIGN KEY (nomor_transaksi) REFERENCES transaksi_pembelian(nomor_transaksi),
     FOREIGN KEY (kode_barang) REFERENCES merchandise(kode_barang)
 ) ENGINE=InnoDB;
+
+DELIMITER //
+
+CREATE TRIGGER check_artis_konflik_jadwal
+BEFORE INSERT ON tampil
+FOR EACH ROW
+BEGIN
+    DECLARE existing_id_pertunjukan INT;
+    DECLARE new_pertunjukan_waktu DATETIME;
+    DECLARE new_pertunjukan_lokasi INT;
+
+    SELECT waktu, id_lokasi
+    INTO new_pertunjukan_waktu, new_pertunjukan_lokasi
+    FROM pertunjukan
+    WHERE id_pertunjukan = NEW.id_pertunjukan;
+
+    SELECT p.id_pertunjukan
+    INTO existing_id_pertunjukan
+    FROM tampil AS t
+    JOIN pertunjukan AS p ON t.id_pertunjukan = p.id_pertunjukan
+    WHERE t.id_artis = NEW.id_artis -- Artis yang sama
+      AND p.waktu = new_pertunjukan_waktu -- Pada waktu yang sama
+      AND p.id_lokasi <> new_pertunjukan_lokasi -- Di lokasi yang berbeda
+      AND t.id_pertunjukan <> NEW.id_pertunjukan; -- Bukan pertunjukan yang sama yang sedang di-insert
+
+    IF existing_id_pertunjukan IS NOT NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Konflik Jadwal: Artis ini sudah dijadwalkan di tempat lain pada waktu yang sama.';
+    END IF;
+END;
+//
+DELIMITER ;
+
+ALTER TABLE transaksi_pembelian 
+ADD CONSTRAINT uk_nomor_transaksi UNIQUE (nomor_transaksi);
+
+
 
 -- Trigger transition constraint sehingga TRUE tidak bisa berubah menjadi FALSE
 DELIMITER //
