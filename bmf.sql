@@ -56,6 +56,7 @@ CREATE TABLE tiket_reguler (
 CREATE TABLE tiket_vip (
     id_tiket INT NOT NULL,
     kode_barang INT NOT NULL,
+    statusFreebies BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (id_tiket, kode_barang),
     FOREIGN KEY (id_tiket) REFERENCES tiket(id_tiket) ON DELETE CASCADE,
     FOREIGN KEY (kode_barang) REFERENCES merchandise(kode_barang)
@@ -127,7 +128,12 @@ CREATE TABLE nomor_telepon_penonton (
     id_penonton INT,
     nomor_telepon VARCHAR(20),
     PRIMARY KEY (id_penonton, nomor_telepon),
-    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
+    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE,
+    CONSTRAINT VALIDASI_NOMOR_TELEPON
+    CHECK(NOT nomor_telepon RLIKE '[^0-9]'
+        AND CHAR_LENGTH(nomor_telepon) >= 10 
+        AND CHAR_LENGTH(nomor_telepon) <= 13 
+        AND SUBSTRING(nomor_telepon FROM 1 FOR 2) LIKE "08")
 ) ENGINE=InnoDB;
 
 CREATE TABLE alamat_penonton (
@@ -145,3 +151,60 @@ CREATE TABLE terdaftar_transaksi (
     FOREIGN KEY (nomor_transaksi) REFERENCES transaksi_pembelian(nomor_transaksi),
     FOREIGN KEY (kode_barang) REFERENCES merchandise(kode_barang)
 ) ENGINE=InnoDB;
+
+-- Trigger transition constraint sehingga TRUE tidak bisa berubah menjadi FALSE
+DELIMITER //
+CREATE TRIGGER Prevent_statusFreebies_Downgrade AFTER UPDATE ON tiket_vip
+FOR EACH ROW
+BEGIN
+    IF OLD.statusFreebies = TRUE AND NEW.statusFreebies = FALSE THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tidak boleh mengubah statusFreebies dari TRUE menjadi FALSE.';
+    END IF;
+END;
+//
+
+DELIMITER ;
+
+-- Prosedur ambil freebies
+DELIMITER //
+CREATE PROCEDURE ambil_freebies(IN id_tiket INT)
+BEGIN
+	DECLARE curStatus BOOLEAN;
+	DECLARE invalid_id BOOL DEFAULT FALSE;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET invalid_id = TRUE;
+	
+	SELECT statusFreebies INTO curStatus
+	FROM tiket_vip tv
+	WHERE tv.id_tiket = id_tiket;
+
+	IF invalid_id THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tiket ID tidak ditemukan.';
+	ELSEIF curStatus THEN
+		SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Freebies sudah diambil sebelumnya.';
+	ELSE
+		UPDATE tiket_vip tv
+		SET tv.statusFreebies = TRUE
+		WHERE tv.id_tiket = id_tiket;
+	END IF;
+END;
+//
+
+DELIMITER ;
+
+-- View melihat aktivitas konsumen
+CREATE VIEW aktivitas_konsumen AS
+SELECT R1.nama AS Nama, R1.email AS Email, R1.id_tiket AS ID_Tiket, R1.kategori AS Jenis_Tiket, R1.status_pembayaran AS Status_Pembayaran, COALESCE(R2.tHarga, 0) AS Total_Nilai_Pembelian, COALESCE(R2.tKuantitas, 0) AS Jumlah_Item
+FROM (
+	SELECT pn.id_penonton, pn.nama, pn.email, t.kategori, t.status_pembayaran, t.id_tiket
+	FROM penonton pn INNER JOIN tiket t ON pn.id_penonton = t.id_penonton
+	WHERE t.kategori LIKE "VIP") AS R1
+LEFT JOIN (
+	SELECT tp.id_penonton, SUM(m.harga * tt.kuantitas) AS tHarga, SUM(tt.kuantitas) tKuantitas
+	FROM transaksi_pembelian tp INNER JOIN terdaftar_transaksi tt ON tp.nomor_transaksi = tt.nomor_transaksi
+	INNER JOIN merchandise m ON tt.kode_barang = m.kode_barang
+	GROUP BY tp.id_penonton) AS R2
+ON R1.id_penonton = R2.id_penonton
+ORDER BY R1.id_penonton;
