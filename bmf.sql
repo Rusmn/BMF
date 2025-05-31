@@ -315,3 +315,28 @@ LEFT JOIN (
 	GROUP BY tp.id_penonton) AS R2
 ON R1.id_penonton = R2.id_penonton
 ORDER BY R1.id_penonton;
+
+-- View statistik penjualan tiket harian
+CREATE VIEW statistik_penjualan_harian AS SELECT      
+DATE(tp.waktu_pembelian) AS Tanggal,     
+COUNT(t.id_tiket) AS Jumlah_Tiket_Terjual,     
+SUM(t.harga) AS Total_Pendapatan,     
+COUNT(CASE WHEN t.kategori = 'reguler' THEN 1 END) AS Tiket_Reguler,     
+COUNT(CASE WHEN t.kategori = 'VIP' THEN 1 END) AS Tiket_VIP,     
+COUNT(CASE WHEN t.status_pembayaran = 'lunas' THEN 1 END) AS Tiket_Lunas,     
+COUNT(CASE WHEN t.status_pembayaran = 'belum lunas' THEN 1 END) AS Tiket_Belum_Lunas 
+FROM tiket t JOIN transaksi_pembelian tp ON t.id_penonton = tp.id_penonton 
+GROUP BY DATE(tp.waktu_pembelian) ORDER BY Tanggal DESC;
+
+-- View penonton favorit artis
+CREATE VIEW penonton_favorit_artis AS  
+SELECT p.id_penonton, p.nama AS Nama_Penonton, p.email AS Email_Penonton,      
+a.id_artis, a.nama AS Nama_Artis, a.negara_asal AS Negara_Asal_Artis,      
+COUNT(t.id_tiket) AS Jumlah_Tontonan,      
+RANK() OVER (PARTITION BY p.id_penonton 
+ORDER BY COUNT(t.id_tiket) DESC) AS Ranking_Favorit  
+FROM penonton p  JOIN tiket t ON p.id_penonton = t.id_penonton  
+JOIN pertunjukan pt ON t.id_pertunjukan = pt.id_pertunjukan  
+JOIN tampil tp ON pt.id_pertunjukan = tp.id_pertunjukan  
+JOIN artis a ON tp.id_artis = a.id_artis GROUP BY p.id_penonton, p.nama, p.email, a.id_artis, a.nama, a.negara_asal  
+ORDER BY p.id_penonton, Jumlah_Tontonan DESC;
