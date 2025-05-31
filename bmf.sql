@@ -2,7 +2,11 @@
 CREATE DATABASE IF NOT EXISTS BMF;
 USE BMF;
 
--- Tabel utama
+
+-- =============================================================
+-- Tabel
+-- =============================================================
+
 CREATE TABLE lokasi (
     id_lokasi INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,
@@ -12,7 +16,8 @@ CREATE TABLE lokasi (
 CREATE TABLE penonton (
     id_penonton INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL
+    email VARCHAR(255) UNIQUE NOT NULL,
+    CONSTRAINT check_email_format CHECK (email LIKE '%_@__%.__%')
 ) ENGINE=InnoDB;
 
 CREATE TABLE pertunjukan (
@@ -31,7 +36,8 @@ CREATE TABLE tiket (
     id_pertunjukan INT NOT NULL,
     id_penonton INT,
     FOREIGN KEY (id_pertunjukan) REFERENCES pertunjukan(id_pertunjukan) ON DELETE RESTRICT,
-    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE RESTRICT
+    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE RESTRICT,
+    CONSTRAINT check_harga_nonnegatif CHECK (harga >= 0.0)
 ) ENGINE=InnoDB;
 
 CREATE TABLE transaksi_pembelian (
@@ -39,13 +45,15 @@ CREATE TABLE transaksi_pembelian (
     id_penonton INT,
     waktu_pembelian DATETIME NOT NULL,
     total_harga DECIMAL(12,2) DEFAULT 0,
-    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
+    FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE,
+    CONSTRAINT check_harga_nonnegatif CHECK (total_harga >= 0.0)
 ) ENGINE=InnoDB;
 
 CREATE TABLE merchandise (
     kode_barang INT AUTO_INCREMENT PRIMARY KEY,
     kategori VARCHAR(100) NOT NULL,
-    harga DECIMAL(10,2) NOT NULL
+    harga DECIMAL(10,2) NOT NULL,
+    CONSTRAINT check_harga_nonnegatif CHECK (harga >= 0.0)
 ) ENGINE=InnoDB;
 
 CREATE TABLE tiket_reguler (
@@ -152,6 +160,65 @@ CREATE TABLE terdaftar_transaksi (
     FOREIGN KEY (kode_barang) REFERENCES merchandise(kode_barang)
 ) ENGINE=InnoDB;
 
+
+-- =============================================================
+-- Trigger
+-- =============================================================
+
+DELIMITER //
+
+CREATE TRIGGER trigger_bmf_update_tiket
+BEFORE UPDATE ON tiket
+FOR EACH ROW
+BEGIN
+    -- Jika tiket sudah lunas atau memiliki id_penonton, tidak boleh ada perubahan apapun
+    IF OLD.status_pembayaran = 'lunas' OR OLD.id_penonton IS NOT NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tiket yang sudah lunas atau memiliki pemilik tidak dapat diubah';
+    END IF;
+    
+    -- Validasi untuk update ke status lunas harus memiliki id_penonton
+    IF NEW.status_pembayaran = 'lunas' AND NEW.id_penonton IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tiket lunas harus memiliki id_penonton';
+    END IF;
+END//
+
+CREATE TRIGGER trigger_bmf_insert_tiket
+BEFORE INSERT ON tiket
+FOR EACH ROW
+BEGIN
+    -- Tiket baru tidak boleh memiliki status pembayaran 'lunas' tanpa id_penonton
+    IF NEW.status_pembayaran = 'lunas' AND NEW.id_penonton IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Tiket baru dengan status lunas harus memiliki id_penonton';
+    END IF;
+    
+END//
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER trigger_bmf_transaksi_pembelian_prevent_delete
+BEFORE DELETE ON transaksi_pembelian
+FOR EACH ROW
+BEGIN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Transaksi pembelian tidak dapat dihapus';
+END//
+
+CREATE TRIGGER trigger_bmf_terdaftar_transaksi_prevent_delete
+BEFORE DELETE ON terdaftar_transaksi
+FOR EACH ROW
+BEGIN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Rincian transaksi tidak dapat dihapus';
+END//
+
+DELIMITER ;
+
+
 DELIMITER //
 
 CREATE TRIGGER check_artis_konflik_jadwal
@@ -229,6 +296,10 @@ END;
 //
 
 DELIMITER ;
+
+-- ==============================================================
+-- View
+-- ==============================================================
 
 -- View melihat aktivitas konsumen
 CREATE VIEW aktivitas_konsumen AS
