@@ -38,6 +38,7 @@ CREATE TABLE transaksi_pembelian (
     nomor_transaksi INT AUTO_INCREMENT PRIMARY KEY,
     id_penonton INT,
     waktu_pembelian DATETIME NOT NULL,
+    total_harga DECIMAL(12,2) DEFAULT 0,
     FOREIGN KEY (id_penonton) REFERENCES penonton(id_penonton) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -60,7 +61,6 @@ CREATE TABLE tiket_vip (
     FOREIGN KEY (kode_barang) REFERENCES merchandise(kode_barang)
 ) ENGINE=InnoDB;
 
--- Tabel lainnya
 CREATE TABLE fasilitas (
     id_lokasi INT,
     fasilitas VARCHAR(255),
